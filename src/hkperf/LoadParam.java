@@ -13,7 +13,7 @@ public class LoadParam {
 	private String dateTime;
 
 	public String getDateTime() {
-		return dateTime.replace(" ", ",").replace(":", "-").replace("-", ",");
+		return dateTime.replace(" ", ",").replace(":", ",").replace("-", ",").substring(0,19);
 	}
 
 	public void setDateTime(String dateTime) {

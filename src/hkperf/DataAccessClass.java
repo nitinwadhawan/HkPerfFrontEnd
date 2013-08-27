@@ -2,7 +2,7 @@ package hkperf;
 
 /**
  * Created with IntelliJ IDEA.
- * User: Nitin Wadhwan
+ * User: Nitin Wadhawan
  * Date: 8/12/13
  * Time: 12:13 PM
  * To change this template use File | Settings | File Templates.
@@ -23,7 +23,8 @@ public class DataAccessClass {
 	String sqlForResultSet;
 
 	public static void main(String args[]) {
-
+	//	LoadParam sd= new LoadParam();
+	 //getResult("select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=3 and b.website_id=2",sd);
 
 	}
 
@@ -41,6 +42,7 @@ public class DataAccessClass {
 
 		java.sql.Connection conn = null;
 		java.sql.Statement stmt = null;
+		java.sql.Statement countStmt=null;
 		try {
 			//STEP 2: Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
@@ -51,19 +53,28 @@ public class DataAccessClass {
 			System.out.println("Connected database successfully...");
 
 			//STEP 4: Execute a query
+			String getcount="select Count(*) from page_load_performance.response a ,page_load_performance.response_details b where a.request_id=b.request_id and a.website_id=1 and b.response_view_type=1;";
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
+			countStmt=conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
+			ResultSet rsCount= countStmt.executeQuery(getcount);
 
 
 			//STEP 5: Extract data from result set
+			while (rsCount.next()){
+				count=rsCount.getInt(1)  ;
+				System.out.println("count=" +count);
+			}
+
 			while (rs.next()) {
 				objectName = new LoadParam();
 				objectName.setLoadTime(rs.getFloat("load_time"));
 				objectName.setDateTime(rs.getString("create_dt"));
 				resultList.add(objectName);
-				count++;
+
 			}
+
 			rs.close();
 		} catch (SQLException se) {
 			//Handle errors for JDBC

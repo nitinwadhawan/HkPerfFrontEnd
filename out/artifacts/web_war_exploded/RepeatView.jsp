@@ -87,7 +87,7 @@ java.util.List
     </script>   ​
 </head>
 <body>
-hello
-<div id='chart_div' style='width: 1000px; height: 440px;'></div>
+<a href=" ./FirstView.jsp">First View </a>
+<div id='chart_div' style='width: 1200px; height: 540px;'></div>
 </body>
 </html>

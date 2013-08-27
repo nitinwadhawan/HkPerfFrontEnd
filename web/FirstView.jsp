@@ -82,11 +82,16 @@ java.util.List
             var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
             chart.draw(data, {displayAnnotations: true});
 
+
+        }
+        function timedRefresh(timeoutPeriod) {
+            setTimeout("location.reload(true);",timeoutPeriod);
+            <% System.out.println("page got refreshed");%>
         }
     </script>   ​
 </head>
-<body>
-hello
-<div id='chart_div' style='width: 1000px; height: 440px;'></div>
+<body onload="JavaScript:timedRefresh(500000);">
+<a href=" ./RepeatView.jsp">Repeat View </a>
+<div id='chart_div' style='width: 1200px; height: 540px;'></div>
 </body>
 </html>

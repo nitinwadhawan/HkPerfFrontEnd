@@ -12,8 +12,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <title>First View</title>
     <%@ page import="java.sql.Connection,
 java.sql.DriverManager,
 java.sql.ResultSet,
@@ -29,53 +28,66 @@ java.util.LinkedList,
 java.util.List
 "
             %>
-    <script type="text/javascript">
-        google.load("visualization", "1", {packages:["corechart"]});
-        google.setOnLoadCallback(drawChart);
-        function drawChart() {
-            <%
-            String getHkAvgTimeByDate="select AVG(load_time) as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=4 and b.website_id=1 group by DATE(create_dt)";
-            String getSdAvgTimeByDate="select AVG(load_time) as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=4 and b.website_id=2 group by DATE(create_dt)";
-            LoadParam hk= new LoadParam();
-            LoadParam sd= new LoadParam();
-            List<LoadParam> resultList_hk= new ArrayList<LoadParam>();
-            List<LoadParam> resultList_sd= new ArrayList<LoadParam>();
+    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+        google.load('visualization', '1', {'packages':['annotatedtimeline']});
+        google.setOnLoadCallback(drawVisualization);
 
-
-            resultList_hk=DataAccessClass.getResult(getHkAvgTimeByDate,hk);
-            resultList_sd=DataAccessClass.getResult(getSdAvgTimeByDate,sd);
-
-            %>
+        function drawVisualization() {
             var data = new google.visualization.DataTable();
-            data.addColumn('date', 'Date Of Test(Medium)');
+
+            <%
+              String getHkAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=2 and b.website_id=1";
+              String getSdAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=2 and b.website_id=2";
+              String getAzAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=2 and b.website_id=3";
+              //String getFkAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=3 and b.website_id=4";
+
+              String getCount="select Count(*) from page_load_performance.response a ,page_load_performance.response_details b where a.request_id=b.request_id and a.website_id=1 and b.response_view_type=1;";
+              LoadParam hk= new LoadParam();
+              LoadParam sd= new LoadParam();
+              LoadParam az= new LoadParam();
+             // LoadParam fk= new LoadParam();
+
+              List<LoadParam> resultList_hk= new ArrayList<LoadParam>();
+              List<LoadParam> resultList_sd= new ArrayList<LoadParam>();
+              List<LoadParam> resultList_az= new ArrayList<LoadParam>();
+             // List<LoadParam> resultList_fk= new ArrayList<LoadParam>();
+
+
+              resultList_hk=DataAccessClass.getResult(getHkAvgTimeByDate,hk);
+              resultList_sd=DataAccessClass.getResult(getSdAvgTimeByDate,sd);
+              resultList_az=DataAccessClass.getResult(getAzAvgTimeByDate,az);
+             // resultList_fk=DataAccessClass.getResult(getFkAvgTimeByDate,fk);
+
+              %>
+
+
+            data.addColumn('datetime', 'Date Of Test');
             data.addColumn('number', 'Healthkart');
             data.addColumn('number','SnapDeal');
+            data.addColumn('number', 'Amazon');
 
-            //TODO select minimum of the count or modify query according to this.
 
-            var dataView = new google.visualization.DataView(data);
-            //dataView.setColumns([{calc: function(data, row) { return data.getFormattedValue(row, 0); }, type:'string'}, 1]);
+
             <%
-            System.out.println(DataAccessClass.count);
-            for(int i=0;i<=3;i++)
-            {
-             %>
+                   System.out.println(DataAccessClass.count);
+                   for(int i=0;i<DataAccessClass.count;i++)
+                   {
+                    %>
 
-            data.addRow([new Date(<%=resultList_hk.get(i).getDateTime().substring(0,10)%>),<%=resultList_hk.get(i).getLoadTime()%>,<%=resultList_sd.get(i).getLoadTime()%>]);
+            data.addRow([new Date(<%=resultList_hk.get(i).getDateTime()%>),<%=resultList_hk.get(i).getLoadTime()%>,<%=resultList_sd.get(i).getLoadTime()%>,<%=resultList_az.get(i).getLoadTime()%>]);
 
             <%}%>
-            var options = {title: 'Page Performance Results'};
-            var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-            chart.draw(dataView, options);
-            vAxis: {title: "Time(ms)"};
-            hAxis: {title: "Date/Time"};
-            seriesType: "bars";
-            chart.draw(dataView, options);
+
+
+            var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
+            chart.draw(data, {displayAnnotations: true});
+
         }
-    </script>
+    </script>   ​
 </head>
 <body>
-<div id="chart_div" style="width: 700px; height: 400px;">TNT</div>
+hello
+<div id='chart_div' style='width: 1000px; height: 440px;'></div>
 </body>
-
 </html>

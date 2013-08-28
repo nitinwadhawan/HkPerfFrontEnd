@@ -23,8 +23,8 @@ public class DataAccessClass {
 	String sqlForResultSet;
 
 	public static void main(String args[]) {
-	LoadParam sd= new LoadParam();
-	getResult("select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=3 and b.website_id=2",sd);
+	//LoadParam sd= new LoadParam();
+	//getResult("select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=3 and b.website_id=2",sd);
 
 	}
 
@@ -37,7 +37,7 @@ public class DataAccessClass {
 
 		//  Database credentials
 		String USER = "root";
-		String PASS = "root";
+		String PASS = "Ni@123456";
 
 
 		java.sql.Connection conn = null;

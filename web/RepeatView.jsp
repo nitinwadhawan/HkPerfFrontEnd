@@ -38,7 +38,7 @@ java.util.List
 
             <%
               String getHkAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=2 and b.website_id=1";
-              String getSdAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=2 and b.website_id=2";
+              String getSdAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=2 and b.website_id=4";
               String getAzAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=2 and b.website_id=3";
               //String getFkAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=3 and b.website_id=4";
 
@@ -92,6 +92,6 @@ java.util.List
 </head>
 <body onload="JavaScript:timedRefresh(500000);">
 <a href=" ./FirstView.jsp">First View </a>
-<div id='chart_div' style='width: 1200px; height: 540px;'></div>
+<div id='chart_div' style='width: 1400px; height: 640px;'></div>
 </body>
 </html>

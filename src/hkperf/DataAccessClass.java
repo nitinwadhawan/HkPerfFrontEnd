@@ -37,7 +37,7 @@ public class DataAccessClass {
 
 		//  Database credentials
 		String USER = "root";
-		String PASS = "Ni@123456";
+		String PASS = "root";
 
 
 		java.sql.Connection conn = null;

@@ -37,9 +37,9 @@ java.util.List
             var data = new google.visualization.DataTable();
 
             <%
-              String getHkAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=2 and b.website_id=1";
-              String getSdAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=2 and b.website_id=2";
-              String getAzAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=2 and b.website_id=3";
+              String getHkAvgTimeByDate="select Avg(load_time) as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=4 and b.website_id=1 group by Date(create_dt)";
+              String getSdAvgTimeByDate="select Avg(load_time) as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=4 and b.website_id=2 group by Date(create_dt)";
+              String getAzAvgTimeByDate="select Avg(load_time) as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=4 and b.website_id=3 group by Date(create_dt)";
               //String getFkAvgTimeByDate="select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=3 and b.website_id=4";
 
               String getCount="select Count(*) from page_load_performance.response a ,page_load_performance.response_details b where a.request_id=b.request_id and a.website_id=1 and b.response_view_type=1;";
@@ -64,7 +64,7 @@ java.util.List
 
             data.addColumn('datetime', 'Date Of Test');
             data.addColumn('number', 'Healthkart');
-            data.addColumn('number','SnapDeal');
+            data.addColumn('number','Flipkart');
             data.addColumn('number', 'Amazon');
 
 
@@ -92,6 +92,6 @@ java.util.List
 </head>
 <body onload="JavaScript:timedRefresh(500000);">
 <a href=" ./FirstView.jsp">First View </a>
-<div id='chart_div' style='width: 1200px; height: 540px;'></div>
+<div id='chart_div' style='width: 1400px; height: 640px;'></div>
 </body>
 </html>

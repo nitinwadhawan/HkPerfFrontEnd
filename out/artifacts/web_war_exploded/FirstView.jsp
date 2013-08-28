@@ -90,7 +90,7 @@ java.util.List
         }
     </script>   ​
 </head>
-<body onload="JavaScript:timedRefresh(5000);">
+<body onload="JavaScript:timedRefresh(500000);">
 <a href=" ./RepeatView.jsp">Repeat View </a>
 <div id='chart_div' style='width: 1200px; height: 540px;'></div>
 </body>

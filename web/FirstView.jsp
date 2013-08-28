@@ -63,7 +63,7 @@ java.util.List
 
             data.addColumn('datetime', 'Date Of Test');
             data.addColumn('number', 'Healthkart');
-            data.addColumn('number','SnapDeal');
+            data.addColumn('number','Flipkart');
             data.addColumn('number', 'Amazon');
 
 
@@ -93,6 +93,6 @@ java.util.List
 </head>
 <body onload="JavaScript:timedRefresh(5000000);">
 <a href=" ./RepeatView.jsp">Repeat View </a>
-<div id='chart_div' style='width: 1400px; height: 640px;'></div>
+<div id='chart_div' style='width: 1300px; height: 640px;'></div>
 </body>
 </html>

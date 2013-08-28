@@ -71,7 +71,7 @@ java.util.List
             <%
                    System.out.println(DataAccessClass.count);
                   // DataAccessClass.count=DataAccessClass.count-1;
-                   for(int i=0;i<DataAccessClass.count-2;i++)
+                   for(int i=0;i<DataAccessClass.count;i++)
                    {
                     %>
 

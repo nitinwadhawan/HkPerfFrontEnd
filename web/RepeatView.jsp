@@ -64,7 +64,7 @@ java.util.List
 
             data.addColumn('datetime', 'Date Of Test');
             data.addColumn('number', 'Healthkart');
-            data.addColumn('number','SnapDeal');
+            data.addColumn('number','Flipkart');
             data.addColumn('number', 'Amazon');
 
 

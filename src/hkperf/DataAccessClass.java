@@ -9,11 +9,13 @@ package hkperf;
  */
 
 
+import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 
 public class DataAccessClass {
@@ -22,27 +24,24 @@ public class DataAccessClass {
 	public static int count = 0;
 	String sqlForResultSet;
 
-	public static void main(String args[]) {
-	//LoadParam sd= new LoadParam();
-	//getResult("select load_time as load_time, create_dt from page_load_performance.response_details a,page_load_performance.response b where a.request_id= b.request_id and a.response_view_type=3 and b.website_id=2",sd);
-
-	}
-
-
-	public static List<LoadParam> getResult(String sql, LoadParam objectName) {
+	public List<LoadParam> getResult(String sql, LoadParam objectName) throws IOException {
+		Properties prop = new Properties();
+//		prop.load(getClass().getResourceAsStream("../environmentLocator.properties"));
 		System.out.println("inside getResult");
 		List<LoadParam> resultList = new ArrayList<LoadParam>();
 		String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		String DB_URL = "jdbc:mysql://localhost:3306/page_load_performance";
 
-		//  Database credentials
+
+	/*	String DB_URL = (String) prop.get("dburl");
+		String USER = (String) prop.get("dbuser");
+		String PASS = (String) prop.get("dbpass");*/
+		String DB_URL = "jdbc:mysql://localhost:3306/page_load_performance";
 		String USER = "root";
 		String PASS = "root";
 
-
 		java.sql.Connection conn = null;
 		java.sql.Statement stmt = null;
-		java.sql.Statement countStmt=null;
+		java.sql.Statement countStmt = null;
 		try {
 			//STEP 2: Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
@@ -53,18 +52,18 @@ public class DataAccessClass {
 			System.out.println("Connected database successfully...");
 
 			//STEP 4: Execute a query
-			String getcount="select Count(*) from page_load_performance.response a ,page_load_performance.response_details b where a.request_id=b.request_id and a.website_id=1 and b.response_view_type=1;";
+			String getcount = "select Count(*) from page_load_performance.response a ,page_load_performance.response_details b where a.request_id=b.request_id and a.website_id=1 and b.response_view_type=1;";
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
-			countStmt=conn.createStatement();
+			countStmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			ResultSet rsCount= countStmt.executeQuery(getcount);
+			ResultSet rsCount = countStmt.executeQuery(getcount);
 
 
 			//STEP 5: Extract data from result set
-			while (rsCount.next()){
-				count=rsCount.getInt(1)  ;
-				System.out.println("count=" +count);
+			while (rsCount.next()) {
+				count = rsCount.getInt(1);
+				System.out.println("count=" + count);
 			}
 
 			while (rs.next()) {

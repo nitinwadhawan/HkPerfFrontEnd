@@ -1,5 +1,10 @@
 package hkperf;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Nitin Wadhawan
@@ -12,8 +17,12 @@ public class LoadParam {
 	private float loadTime;
 	private String dateTime;
 
-	public String getDateTime() {
-		return dateTime.replace(" ", ",").replace(":", ",").replace("-", ",").substring(0,19);
+	public String getDateTime()throws ParseException {
+		dateTime= dateTime.replace(" ", ",").replace(":", ",").replace("-", ",").substring(0,19);
+		/*Date date = new SimpleDateFormat("yyyy MM, dd,HH,mm,ss", Locale.ENGLISH).parse(dateTime);
+		System.out.println(date); // Sat Jan 02 00:00:00 BOT 2010
+		System.out.println("get date time :" +dateTime);*/
+		return dateTime;
 	}
 
 	public void setDateTime(String dateTime) {

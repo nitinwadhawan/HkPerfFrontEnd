@@ -14,7 +14,7 @@
 <%
     String userInput = request.getParameter("graphType");
     if (userInput.equalsIgnoreCase("First_view")) {
-     response.sendRedirect("FirstView.jsp");
+     response.sendRedirect("index.jsp");
     }
     else if (userInput.equalsIgnoreCase("Repeat_view")){
         response.sendRedirect("RepeatView.jsp");

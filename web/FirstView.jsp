@@ -16,6 +16,14 @@
                      java.util.ArrayList,
                      java.util.List"
             %>
+<style type="text/css">
+    table{
+        max-width: 500px;
+    }
+    table td {
+        max-width: 250px;
+    }
+</style>
     <script type='text/javascript' src='http://www.google.com/jsapi'></script>
     <script type='text/javascript'>
         google.load('visualization', '1', {'packages': ['annotatedtimeline']});
@@ -29,7 +37,8 @@
               String getCount="select Count(*) from page_load_performance.response a ,page_load_performance.response_details b where a.request_id=b.request_id and a.website_id=1 and b.response_view_type=1;";
               LoadParam hk= new LoadParam();
               List<LoadParam> resultList_hk= new ArrayList<LoadParam>();
-              resultList_hk=DataAccessClass.getResult(getHkAvgTimeByDate,hk);
+              DataAccessClass dataAccessClass=new DataAccessClass();
+              resultList_hk=dataAccessClass.getResult(getHkAvgTimeByDate,hk);
               %>
             data.addColumn('datetime', 'Date Of Test');
             data.addColumn('number', 'Healthkart');
@@ -60,6 +69,6 @@
 <body onload="JavaScript:timedRefresh(5000000);">
 Click <a href=" ./RepeatView.jsp">here </a> for Repeat View
 
-<div id='chart_div' style='width: 1300px; height: 640px;'></div>
+<div id='chart_div' style='width: 500px; height: 500px;'></div>
 </body>
 </html>

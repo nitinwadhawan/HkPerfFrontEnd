@@ -60,6 +60,6 @@
 <body onload="JavaScript:timedRefresh(5000000);">
 Click <a href=" ./FirstView.jsp">here </a> for First View
 
-<div id='chart_div' style='width: 1300px; height: 640px;'></div>
+<div id='chart_div' style='width: 500px; height: 500px;'></div>
 </body>
 </html>

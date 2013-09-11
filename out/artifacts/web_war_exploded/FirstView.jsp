@@ -16,6 +16,14 @@
                      java.util.ArrayList,
                      java.util.List"
             %>
+<style type="text/css">
+    table{
+        max-width: 500px;
+    }
+    table td {
+        max-width: 250px;
+    }
+</style>
     <script type='text/javascript' src='http://www.google.com/jsapi'></script>
     <script type='text/javascript'>
         google.load('visualization', '1', {'packages': ['annotatedtimeline']});
@@ -60,6 +68,6 @@
 <body onload="JavaScript:timedRefresh(5000000);">
 Click <a href=" ./RepeatView.jsp">here </a> for Repeat View
 
-<div id='chart_div' style='width: 1300px; height: 640px;'></div>
+<div id='chart_div' style='width: 500px; height: 500px;'></div>
 </body>
 </html>

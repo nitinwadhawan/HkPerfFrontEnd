@@ -5,6 +5,13 @@
     <title></title>
   </head>
   <body>
-          <b>Hello</b>
+  <div>
+      <jsp:include page="FirstView.jsp"/>
+  </div>
+    <div>
+        <jsp:include page="RepeatView.jsp"/>
+    </div>
+
+  <b>Hello</b>
   </body>
 </html>

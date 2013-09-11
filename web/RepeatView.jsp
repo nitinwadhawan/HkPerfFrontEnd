@@ -29,7 +29,8 @@
               String getCount="select Count(*) from page_load_performance.response a ,page_load_performance.response_details b where a.request_id=b.request_id and a.website_id=1 and b.response_view_type=4;";
               LoadParam hk= new LoadParam();
               List<LoadParam> resultList_hk= new ArrayList<LoadParam>();
-              resultList_hk=DataAccessClass.getResult(getHkAvgTimeByDate,hk);
+              DataAccessClass dataAccessClass= new DataAccessClass();
+              resultList_hk=dataAccessClass.getResult(getHkAvgTimeByDate,hk);
               %>
             data.addColumn('datetime', 'Date Of Test');
             data.addColumn('number', 'Healthkart');
@@ -60,6 +61,6 @@
 <body onload="JavaScript:timedRefresh(5000000);">
 Click <a href=" ./FirstView.jsp">here </a> for First View
 
-<div id='chart_div' style='width: 1300px; height: 640px;'></div>
+<div id='chart_div' style='width: 500px; height: 500px;'></div>
 </body>
 </html>

@@ -23,21 +23,22 @@ public class DataAccessClass {
 
 	public static int count = 0;
 	String sqlForResultSet;
+	Properties prop = new Properties();
 
 	public List<LoadParam> getResult(String sql, LoadParam objectName) throws IOException {
-		Properties prop = new Properties();
-//		prop.load(getClass().getResourceAsStream("../environmentLocator.properties"));
+
+		prop.load(getClass().getResourceAsStream("environmentLocator.properties"));
 		System.out.println("inside getResult");
 		List<LoadParam> resultList = new ArrayList<LoadParam>();
 		String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-
-
-	/*	String DB_URL = (String) prop.get("dburl");
+		String DB_URL = (String) prop.get("dburl");
 		String USER = (String) prop.get("dbuser");
-		String PASS = (String) prop.get("dbpass");*/
-		String DB_URL = "jdbc:mysql://localhost:3306/page_load_performance";
-		String USER = "root";
-		String PASS = "root";
+		String PASS = (String) prop.get("dbpass");
+
+
+/*		String DB_URL = "DBURL";
+		String USER = "DBUSER";
+		String PASS = "DBPASS";*/
 
 		java.sql.Connection conn = null;
 		java.sql.Statement stmt = null;

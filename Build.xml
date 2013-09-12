@@ -1,21 +1,28 @@
 <?xml version="1.0"?>
 <project default="war" name="HkPerfGraphs" basedir=".">
+
+    <property file="${basedir}/environmentLocator.properties" />
+
     <path id="compile.classpath">
         <fileset dir="${basedir}/lib">
             <include name="*.jar"/>
         </fileset>
     </path>
+
     <target name="init">
         <mkdir dir="${basedir}/build/classes"/>
         <mkdir dir="${basedir}/dist"/>
     </target>
+
     <target name="compile" depends="init">
         <javac srcdir="src" debug="true" destdir="${basedir}/build/classes">
             <classpath refid="compile.classpath"/>
         </javac>
     </target>
 
+
     <target name="war" depends="compile">
+        <copy file="${basedir}/environmentLocator.properties" todir="${basedir}/web/WEB-INF/classes/hkperf"/>
         <war webxml="${basedir}/web/WEB-INF/web.xml" destfile="${basedir}/dist/HkPerfGraph.war">
             <fileset dir="${basedir}/web"/>
             <lib dir="${basedir}/lib"/>
@@ -29,4 +36,5 @@
     </target>
 
     <target name="dev-clean" depends="clean, war"/>
+
 </project>

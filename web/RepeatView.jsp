@@ -13,7 +13,7 @@
 <body onload="JavaScript:timedRefresh(5000000);">
 Click <a href=" ./FirstView.jsp">here </a> for First View
 
-<div id='chart_div' style='width: 500px; height: 500px;'></div>
+<div id='chart_div' style='width: 1200px; height: 600px;'></div>
 </body>
 
 <script type='text/javascript' src='http://www.google.com/jsapi'></script>

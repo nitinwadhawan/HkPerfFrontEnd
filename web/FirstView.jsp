@@ -68,6 +68,6 @@
 ​
 Click <a href=" ./RepeatView.jsp">here </a> for Repeat View
 
-<div id='chart_div' style='width: 500px; height: 500px;'></div>
+<div id='chart_div' style='width: 1200px; height: 600px;'></div>
 </body>
 </html>
